@@ -2,31 +2,42 @@
 #include "stm32f4xx.h"
 #include <stdint.h>
 #include "uart.h"
-#include "adc.h"
 #include "systick.h"
-#include "timers.h"
-#include "adxl345.h"
-#include "I2C.h"
 
 
-int16_t x,y,z;
-float xg,yg,zg;
-uint8_t data_reg[6];
+#define GPIOAEN (1U<<0)
+#define PIN5 (1U<<5)
+#define LED_PIN PIN5
+
+static void callback_systick(void);
+
 int main (void)
 {
-adxl_init();
+RCC->AHB1ENR = GPIOAEN;
+GPIOA->MODER |= (1U<<10);
+GPIOA->MODER &=~ (1U<<11);
+
+systick_1hz_interrupt();
+uart2_tx_init();
+
+
 while(1)
 	{
 
-adxl_read (DATA_START_ADDR,data_reg);
-x = ((data_reg[1]<<8) | data_reg[0]);
-y = ((data_reg[3]<<8) | data_reg[2]);
-z = ((data_reg[5]<<8) | data_reg[4]);
 
-xg = (x*0.0078);
-yg = (y*0.0078);
-zg = (z*0.0078);
+
 
 	}
 
 }
+static void callback_systick(void)
+{
+	printf("A second just passed \n\r");
+			GPIOA->ODR ^= LED_PIN;
+}
+void SysTick_Handler(void)
+{
+	callback_systick();
+}
+
+
