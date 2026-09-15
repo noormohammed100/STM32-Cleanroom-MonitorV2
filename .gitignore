@@ -1,0 +1,24 @@
+# CubeIDE / Eclipse build output
+Debug/
+Release/
+.settings/
+*.launch
+
+# Compiled objects and binaries
+*.o
+*.d
+*.elf
+*.bin
+*.hex
+*.map
+*.list
+*.su
+*.mk
+*.cyclo
+
+# Editor / OS junk
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
+desktop.ini
