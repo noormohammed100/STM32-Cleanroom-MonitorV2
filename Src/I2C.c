@@ -1,6 +1,6 @@
 #include "stm32f4xx.h"
 #include "I2C.h"
-
+#include "systick.h"
 #define GPIOBEN                 (1U << 1)
 #define I2C1EN                  (1U << 21)
 #define I2C_100KHZ              80
@@ -154,6 +154,7 @@ i2c_status_t I2C_byteRead(char saddr, char maddr, char* data)
                 	{
                 	return status;
                 	}
+                return I2C_OK;
 }
 
 i2c_status_t I2C_burstRead(char saddr, char maddr, int n, char* data)
@@ -336,6 +337,7 @@ i2c_status_t I2C1_burstWrite(char saddr, char maddr, int n, char* data)
                                	{
                                	return status;
                                	}
+                               return I2C_OK;
 }
 
 

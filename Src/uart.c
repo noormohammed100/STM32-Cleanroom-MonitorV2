@@ -16,22 +16,6 @@
 #define APB1_CLK       SYS_FREQ
 #define USART_BAUDRATE 115200U
 
-/* Correct USART_CR1 bit masks */
-#define USART_CR1_RE  (1U << 2)  /* Receiver Enable (Bit 2) */
-#define USART_CR1_TE  (1U << 3)  /* Transmitter Enable (Bit 3) */
-#define USART_CR1_UE  (1U << 13) /* USART Enable (Bit 13) */
-
-/* USART_SR bit masks */
-#define USART_SR_ORE  (1U << 3)  /* Overrun Error (Bit 3) */
-
-#define USART_SR_TXE  (1U << 7)  /* Transmit Data Register Empty (Bit 7) */
-
-#define USART_CR1_RXNEIE (1U<<5)
-#define USART_SR_RXNE (1U << 5)  /* Read Data Register Not Empty (Bit 5) */
-
-#define USART_SR_PE  (1U << 0)  /* Parity error */
-#define USART_SR_FE  (1U << 1)  /* Framing error */
-#define USART_SR_NE  (1U << 2)  /* Noise error */
 
 static volatile uint8_t rx_byte;
 static volatile uint8_t rx_byte_ready;
